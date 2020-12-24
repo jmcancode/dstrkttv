@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // react-native
 import { StyleSheet, Text } from "react-native";
 // expo icons
-import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
@@ -129,9 +129,9 @@ const TabsScreen = ({ navigation }) => (
       name="Discover"
       component={HomeStackScreen}
       options={{
-        tabBarLabel: "Discover",
+        tabBarLabel: "Watch Live",
         tabBarIcon: ({ color, size }) => (
-          <AntDesign name="bulb1" size={size} color={color} />
+          <MaterialIcons name="live-tv" size={size} color={color} />
         ),
       }}
     />
