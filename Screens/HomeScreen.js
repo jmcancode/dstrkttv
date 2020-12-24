@@ -1,17 +1,23 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, ScrollView, StyleSheet, Button } from "react-native";
 
-export default Home = () => {
+import { AuthContext } from "../context";
+
+export default function Home() {
+  const { signOut } = React.useContext(AuthContext);
   return (
-    <View>
-      <Text>This is the home page</Text>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Button color="#1f1f1f" title="Sign-out" onPress={() => signOut()} />
+      </View>
+    </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  text: {
-    fontWeight: "700",
-    textTransform: "uppercase",
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
   },
 });

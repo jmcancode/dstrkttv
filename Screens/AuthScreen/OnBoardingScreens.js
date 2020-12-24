@@ -15,7 +15,7 @@ const { width, height } = Dimensions.get("screen");
 // inspiration: https://dribbble.com/shots/11164698-Onboarding-screens-animation
 // https://twitter.com/mironcatalin/status/1321180191935373312
 
-const bgs = ["#F93D8D", "#C036D2", "#F99EDA", "#FC5628"];
+const bgs = ["#303030", "#2B2B2B", "#1F1F1F", "#1B1C1E"];
 const DATA = [
   {
     key: "3571572",
@@ -26,21 +26,21 @@ const DATA = [
   },
   {
     key: "3571747",
-    title: "Automated radical data-warehouse",
+    title: "Onboarding Slide 1",
     description:
       "Use the optical SAS system, then you can navigate the auxiliary alarm!",
     image: "https://image.flaticon.com/icons/png/256/3571/3571747.png",
   },
   {
     key: "3571680",
-    title: "Inverse attitude-oriented system engine",
+    title: "Onboarding Slide 2",
     description:
       "The ADP array is down, compress the online sensor so we can input the HTTP panel!",
     image: "https://image.flaticon.com/icons/png/256/3571/3571680.png",
   },
   {
     key: "3571603",
-    title: "Monitored global data-warehouse",
+    title: "Onboarding Slide 3",
     description: "We need to program the open-source IB interface!",
     image: "https://image.flaticon.com/icons/png/256/3571/3571603.png",
   },

@@ -10,6 +10,7 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 // Auth Context
 import { AuthContext } from "./context";
 // Auth Screens
@@ -62,26 +63,18 @@ const AuthStackScreen = () => (
 const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator>
     <HomeStack.Screen
-      name="STYLE BY JM"
+      name="Home"
       component={Home}
       options={{
-        headerLeft: () => (
+        headerTransparent: true,
+        headerTitle: "DSTRKT TV",
+        headerRight: () => (
           <MaterialCommunityIcons
             name="account"
             size={24}
             color="black"
-            style={{ paddingLeft: 320 }}
-            onPress={() => navigation.navigate("Modal")}
-          />
-        ),
-
-        headerRight: () => (
-          <MaterialCommunityIcons
-            name="briefcase-outline"
-            size={24}
-            color="black"
             style={{ paddingRight: 20 }}
-            onPress={() => navigation.navigate("ShopModal")}
+            onPress={() => alert("account button")}
           />
         ),
       }}
@@ -100,20 +93,21 @@ const TabsScreen = ({ navigation }) => (
           iconName = focused
             ? "ios-information-circle"
             : "ios-information-circle-outline";
-        } else if (route.name === "Shop") {
+        } else if (route.name === "Channels") {
           iconName = focused ? "ios-list-box" : "ios-list";
         }
-        return <AntDesign name="shoppingcart" size={size} color={color} />;
+        return <Ionicons name="videocam-outline" size={size} color={color} />;
       },
     })}
     tabBarOptions={{
-      activeTintColor: "#B53737",
-      inactiveTintColor: "grey",
+      activeTintColor: "#d7b546",
+      inactiveTintColor: "#777",
     }}
   >
     <Tabs.Screen
       name="Home"
       component={HomeStackScreen}
+      headerMode="none"
       options={{
         tabBarLabel: "Home",
         tabBarIcon: ({ color, size }) => (
@@ -122,18 +116,18 @@ const TabsScreen = ({ navigation }) => (
       }}
     />
     <Tabs.Screen
-      name="Shop"
-      component={ShopStackScreen}
+      name="Channels"
+      component={HomeStackScreen}
       options={{
-        tabBarLabel: "Shop",
+        tabBarLabel: "Channels",
         tabBarIcon: ({ color, size }) => (
-          <Feather name="shopping-bag" size={size} color={color} />
+          <Ionicons name="videocam-outline" size={size} color={color} />
         ),
       }}
     />
     <Tabs.Screen
       name="Discover"
-      component={DiscoverStackScreen}
+      component={HomeStackScreen}
       options={{
         tabBarLabel: "Discover",
         tabBarIcon: ({ color, size }) => (
@@ -143,7 +137,7 @@ const TabsScreen = ({ navigation }) => (
     />
     <Tabs.Screen
       name="Search"
-      component={ProfileStackScreen}
+      component={HomeStackScreen}
       onPress={() => navigation.toggleDrawer()}
       options={{
         tabBarLabel: "Search",
