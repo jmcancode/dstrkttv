@@ -3,16 +3,14 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// react-native
-import { StyleSheet, Text } from "react-native";
+
 // expo icons
-import { MaterialIcons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+
 // Auth Context
 import { AuthContext } from "./context";
+
 // Auth Screens
 import SignIn from "./Screens/AuthScreen/SignInScreen";
 import SignUp from "./Screens/AuthScreen/SignUpScreen";
@@ -20,19 +18,16 @@ import OnboardingScreen from "./Screens/AuthScreen/OnBoardingScreens";
 import Splash from "./Screens/AuthScreen/SplashScreen";
 // main screens
 import Home from "./Screens/HomeScreen";
+import Channel from "./Screens/ChannelScreen";
+import Library from "./Screens/LibraryScreen";
+import Search from "./Screens/SearchScreen";
 
 const Tabs = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
-
-const styles = StyleSheet.create({
-  image: {
-    width: 25,
-    height: 25,
-    marginLeft: 15,
-    marginBottom: 15,
-  },
-});
+const ChannelsStack = createStackNavigator();
+const LibraryStack = createStackNavigator();
+const SearchStack = createStackNavigator();
 
 const AuthStackScreen = () => (
   <AuthStack.Navigator>
@@ -60,26 +55,47 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
-const HomeStackScreen = ({ navigation }) => (
+const HomeStackScreen = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen
       name="Home"
       component={Home}
       options={{
         headerTransparent: true,
-        headerTitle: "DSTRKT TV",
-        headerRight: () => (
-          <MaterialCommunityIcons
-            name="account"
-            size={24}
-            color="black"
-            style={{ paddingRight: 20 }}
-            onPress={() => alert("account button")}
-          />
-        ),
+        headerTitle: null,
       }}
     />
   </HomeStack.Navigator>
+);
+
+const ChannelsStackScreen = () => (
+  <ChannelsStack.Navigator>
+    <ChannelsStack.Screen
+      name="Channel"
+      component={Channel}
+      options={{ headerTransparent: true, headerTitle: null }}
+    />
+  </ChannelsStack.Navigator>
+);
+
+const LibraryStackScreen = () => (
+  <LibraryStack.Navigator>
+    <LibraryStack.Screen
+      name="Library"
+      component={Library}
+      options={{ headerTransparent: true, headerTitle: null }}
+    />
+  </LibraryStack.Navigator>
+);
+
+const SearchStackScreen = () => (
+  <SearchStack.Navigator>
+    <SearchStack.Screen
+      name="Search"
+      component={Search}
+      options={{ headerTransparent: true, headerTitle: null }}
+    />
+  </SearchStack.Navigator>
 );
 
 const TabsScreen = ({ navigation }) => (
@@ -108,16 +124,18 @@ const TabsScreen = ({ navigation }) => (
       name="Home"
       component={HomeStackScreen}
       headerMode="none"
+      showLabel="false"
       options={{
-        tabBarLabel: "Home",
+        // tabBarBadge: 4,
+        tabBarLabel: "Watch Now",
         tabBarIcon: ({ color, size }) => (
-          <AntDesign name="home" size={size} color={color} />
+          <Ionicons name="play-circle-outline" size={size} color={color} />
         ),
       }}
     />
     <Tabs.Screen
       name="Channels"
-      component={HomeStackScreen}
+      component={ChannelsStackScreen}
       options={{
         tabBarLabel: "Channels",
         tabBarIcon: ({ color, size }) => (
@@ -126,18 +144,19 @@ const TabsScreen = ({ navigation }) => (
       }}
     />
     <Tabs.Screen
-      name="Discover"
-      component={HomeStackScreen}
+      name="Library"
+      component={LibraryStackScreen}
+      showLabel={false}
       options={{
-        tabBarLabel: "Watch Live",
+        tabBarLabel: "Library",
         tabBarIcon: ({ color, size }) => (
-          <MaterialIcons name="live-tv" size={size} color={color} />
+          <Ionicons name="library-outline" size={size} color={color} />
         ),
       }}
     />
     <Tabs.Screen
       name="Search"
-      component={HomeStackScreen}
+      component={SearchStackScreen}
       onPress={() => navigation.toggleDrawer()}
       options={{
         tabBarLabel: "Search",

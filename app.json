@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "LayerCake Production presents DSTRKT TV "
+    "description": "LayerCake Production presents DSTRKT TV ",
+    "githubUrl": "https://github.com/jmcancode/dstrkttv"
   }
 }

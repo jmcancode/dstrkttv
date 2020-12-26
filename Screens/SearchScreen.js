@@ -3,15 +3,24 @@ import { Text, View, SafeAreaView, StyleSheet, Button } from "react-native";
 
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 
-export default function Home() {
+import { AuthContext } from "../context";
+
+export default function Search() {
+  const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.applehead}>
       <AppleHeader
         dateTitle={null}
-        largeTitle="Watch Now"
-        // imageSource={require("../assets/rr23.jpeg")}
-        onPress={() => alert("This will be an account modal")}
+        largeTitle="Search"
+        imageSource={require("../assets/rr23.jpeg")}
+        onPress={() => alert("Account Information will live here!")}
       />
+
+      <View>
+        <View style={styles.container}>
+          <Button color="#1f1f1f" title="Sign-out" onPress={() => signOut()} />
+        </View>
+      </View>
     </View>
   );
 }
