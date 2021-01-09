@@ -12,7 +12,7 @@ export default function Search() {
       <AppleHeader
         dateTitle={null}
         largeTitle="Search"
-        imageSource={require("../assets/rr23.jpeg")}
+        // imageSource={require("../assets/rr23.jpeg")}
         onPress={() => alert("Account Information will live here!")}
       />
 
