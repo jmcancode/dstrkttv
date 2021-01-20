@@ -18,7 +18,7 @@ export default function Search() {
 
       <View>
         <View style={styles.container}>
-          <Button color="#1f1f1f" title="Sign-out" onPress={() => signOut()} />
+          <Button title="Sign-out" onPress={() => signOut()} />
         </View>
       </View>
     </View>

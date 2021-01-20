@@ -51,7 +51,7 @@ export default function VideoPlayer() {
           source={require("../assets/videos/dstrkt/58b4824252ce4a1fbf4d7fa82355a05e.mp4")}
           rate={1.0}
           volume={10.0}
-          isMuted={true}
+          isMuted={false}
           resizeMode="cover"
           shouldPlay
           useNativeControls
@@ -70,23 +70,21 @@ export default function VideoPlayer() {
           <Text style={styles.paragraph} adjustsFontSizeToFit>
             Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
             Proin eget tortor risus. Quisque velit nisi, pretium ut lacinia in,
-            elementum id enim.
-            
-            Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-            Proin eget tortor risus. Quisque velit nisi, pretium ut lacinia in,
-            elementum id enim.
+            elementum id enim. Curabitur arcu erat, accumsan id imperdiet et,
+            porttitor at sem. Proin eget tortor risus. Quisque velit nisi,
+            pretium ut lacinia in, elementum id enim.
           </Text>
         </View>
         <View style={styles.fixToText}>
           <Button
             title="Meal Plan"
-            onPress={() => alert("Where do we want our users to go to?")}
+            onPress={() => alert("Are you ready to change your diet?")}
             color="#000"
             accessibilityLabel="Call to action for those who can not hear."
           />
           <Button
             title="Workout Kit"
-            onPress={() => alert("Where do we want our users to go to?")}
+            onPress={() => alert("Are you ready to access your workout?")}
             color="#000"
             accessibilityLabel="Call to action for those who can not hear."
           />

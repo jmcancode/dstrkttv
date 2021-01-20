@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+// expo packages
 import { Camera } from "expo-camera";
-
+import { MaterialIcons } from "@expo/vector-icons";
 export default function CameraAction() {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -33,7 +40,7 @@ export default function CameraAction() {
               );
             }}
           >
-            <Text style={styles.text}> Flip </Text>
+            <MaterialIcons name="camera-front" size={44} color="#f5f5f5" />
           </TouchableOpacity>
         </View>
       </Camera>
@@ -60,7 +67,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 18,
+    fontSize: 25,
     color: "white",
+    fontWeight: "700",
   },
 });

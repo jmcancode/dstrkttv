@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
 const DATA = [
@@ -15,29 +16,32 @@ const DATA = [
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Channel 2",
+    title: "Sky Tv",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "channel 3",
+    title: "Ky Tv",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "channel 4",
+    title: "Jeffery Osborne",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d74",
-    title: "channel 5",
+    title: "The Royal Guard",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d75",
-    title: "channel 6",
+    title: "Finance",
   },
 ];
 
-const Item = ({ title }) => (
-  <TouchableOpacity style={styles.item}>
-    <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>
+const Item = ({ title, navigation }) => (
+  <TouchableOpacity
+    style={styles.item}
+    onPress={() => navigation.navigate("DstrktXScreen")}
+  >
+    <Text adjustsFontSizeToFit numberOfLines={3} style={styles.title}>
       {title}
     </Text>
   </TouchableOpacity>
@@ -79,12 +83,17 @@ const styles = StyleSheet.create({
     borderRadius: 180,
   },
   title: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#f5f5f5",
     textTransform: "uppercase",
-    justifyContent: "center",
-    paddingTop: 21,
-    paddingLeft: 2,
+    paddingTop: 29,
+    paddingLeft: 1,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    textAlign: "center",
   },
   upnext: {
     textTransform: "uppercase",

@@ -25,7 +25,9 @@ import Search from "./Screens/SearchScreen";
 import VideoScreen from "./Screens/VideoScreen";
 import { enableScreens } from "react-native-screens";
 import CameraAction from "./Components/Camera";
-
+import DstrktX from "./Screens/Channels/dstrktx";
+import Modal from "./Screens/Modal/Modal";
+import SkyClarkTv from "./Screens/Channels/skyclarktv";
 enableScreens();
 
 const Tabs = createBottomTabNavigator();
@@ -74,24 +76,49 @@ const HomeStackScreen = () => (
   </HomeStack.Navigator>
 );
 
-const ChannelsStackScreen = () => (
-  <ChannelsStack.Navigator>
-    <ChannelsStack.Screen
-      name="Channel"
-      component={Channel}
-      options={{ headerTransparent: true, headerTitle: null }}
-    />
-    <ChannelsStack.Screen
-      name="VideoScreen"
-      component={VideoScreen}
-      options={{
-        headerTransparent: true,
-        headerTitle: null,
-        headerBackTitle: false,
-      }}
-    />
-  </ChannelsStack.Navigator>
-);
+const ChannelsStackScreen = ({ navigation, route }) => {
+  if (route.state && route.state.index > 0) {
+    navigation.setOptions({ tabBarVisible: false });
+  } else {
+    navigation.setOptions({ tabBarVisible: true });
+  }
+  return (
+    <ChannelsStack.Navigator>
+      <ChannelsStack.Screen
+        name="Channel"
+        component={Channel}
+        options={{ headerTransparent: true, headerTitle: null }}
+      />
+      <ChannelsStack.Screen
+        name="VideoScreen"
+        component={VideoScreen}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: false,
+        }}
+      />
+      <ChannelsStack.Screen
+        name={"DstrktXScreen"}
+        component={DstrktX}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: false,
+        }}
+      />
+      <ChannelsStack.Screen
+        name="SkyClarkTv"
+        component={SkyClarkTv}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: false,
+        }}
+      />
+    </ChannelsStack.Navigator>
+  );
+};
 
 const LibraryStackScreen = () => (
   <LibraryStack.Navigator>
@@ -196,7 +223,7 @@ const RootStackScreen = ({ userToken }) => (
   <RootStack.Navigator
     headerMode="none"
     screenOptions={{ animationEnabled: false }}
-    // mode="modal"
+    mode="modal"
   >
     {userToken ? (
       <RootStack.Screen
@@ -215,6 +242,11 @@ const RootStackScreen = ({ userToken }) => (
         }}
       />
     )}
+    <RootStack.Screen
+      name="Modal"
+      component={Modal}
+      options={{ animationEnabled: true, headerTitle: "Account" }}
+    />
   </RootStack.Navigator>
 );
 
