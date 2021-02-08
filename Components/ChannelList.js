@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { SafeAreaView, View, FlatList, StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 //expo icons
 import { Entypo } from "@expo/vector-icons";
@@ -50,13 +44,17 @@ const GenreList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <TouchableOpacity
+        onPress={() => navigation.navigate("SkyClarkTv")}
+      >
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -66,6 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginLeft: 15,
+    marginTop: 15,
   },
   item: {
     flexDirection: "row",

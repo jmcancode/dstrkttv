@@ -5,6 +5,9 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
+  ImageBackground,
+  Dimensions,
+  Alert,
 } from "react-native";
 // icons
 import { Ionicons } from "@expo/vector-icons";
@@ -13,6 +16,9 @@ import { List, Switch, TouchableRipple, Text } from "react-native-paper";
 // auth context
 import { AuthContext } from "../../context";
 import { useTheme } from "@react-navigation/native";
+import { Touchable } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export const Modal = ({ navigation }) => {
   const theme = useTheme();
@@ -23,8 +29,16 @@ export const Modal = ({ navigation }) => {
     <ScrollView>
       <View style={styles.container}>
         <StatusBar hidden />
+
         <View style={styles.headercontainer}>
-          <Text style={([styles.texttitle], { color: colors.text })}>
+          <Text
+            style={{
+              color: colors.text,
+              fontSize: 24,
+              fontWeight: "900",
+              alignItems: "center",
+            }}
+          >
             {" "}
             SETTINGS
           </Text>
@@ -34,19 +48,39 @@ export const Modal = ({ navigation }) => {
         </View>
         <View style={{ paddingTop: 5 }}>
           <List.Section>
-            <List.Subheader>My Videos</List.Subheader>
-            <List.Item title="Video Library" />
-
+            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+              MY VIDEOS
+            </List.Subheader>
+            <TouchableOpacity
+              onPress={() => Alert.alert("User History Screen")}
+            >
+              <List.Item title="Video Library" />
+            </TouchableOpacity>
           </List.Section>
           <List.Section>
-            <List.Subheader>Schedule</List.Subheader>
-            <List.Item title="Fitness Training" />
-            <List.Item title="Content Creation" />
-            <List.Item title="Consulting" />
+            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+              SCHEDULE A VISIT
+            </List.Subheader>
+            <TouchableOpacity
+              onPress={() => Alert.alert("DSTRKTX Subscription Screen")}
+            >
+              <List.Item title="Athlete Training" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                Alert.alert("Date & Time Picker for scheduled visits screen")
+              }
+            >
+              <List.Item title="Content Creation" />
+            </TouchableOpacity>
           </List.Section>
           <List.Section>
-            <List.Subheader>SETTINGS</List.Subheader>
-            <List.Item title="Account Details" />
+            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+              SETTINGS
+            </List.Subheader>
+            <TouchableOpacity onPress={() => Alert.alert("Settings page")}>
+              <List.Item title="Account Details" />
+            </TouchableOpacity>
           </List.Section>
           <TouchableRipple
             onPress={() => {
@@ -78,11 +112,7 @@ const styles = StyleSheet.create({
     margin: 20,
     paddingTop: 10,
   },
-  texttitle: {
-    fontSize: 24,
-    fontWeight: "900",
-    alignItems: "center",
-  },
+  texttitle: {},
   headercontainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -95,6 +125,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 12,
     paddingHorizontal: 16,
+  },
+  image: {
+    width: width,
+    height: height,
   },
 });
 

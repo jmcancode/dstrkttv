@@ -1,14 +1,16 @@
+import { useTheme } from "@react-navigation/native";
 import React from "react";
 import {
-  SafeAreaView,
   View,
   FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
   Alert,
+  Dimensions,
 } from "react-native";
-
+import { Colors } from "react-native/Libraries/NewAppScreen";
+const { width, height } = Dimensions.get("window");
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -37,10 +39,7 @@ const DATA = [
 ];
 
 const Item = ({ title, navigation }) => (
-  <TouchableOpacity
-    style={styles.item}
-    onPress={() => navigation.navigate("DstrktXScreen")}
-  >
+  <TouchableOpacity style={styles.item}>
     <Text adjustsFontSizeToFit numberOfLines={3} style={styles.title}>
       {title}
     </Text>
@@ -49,10 +48,24 @@ const Item = ({ title, navigation }) => (
 
 const PartnerList = () => {
   const renderItem = ({ item }) => <Item title={item.title} />;
-
+  const { colors } = useTheme();
   return (
-    <SafeAreaView style={styles.container}>
-      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.upnext}>
+    <View style={styles.container}>
+      <Text
+        adjustsFontSizeToFit
+        numberOfLines={1}
+        style={
+          ([styles.channel],
+          {
+            color: colors.text,
+            textTransform: "uppercase",
+            fontSize: 24,
+            fontWeight: "500",
+            paddingBottom: 15,
+            paddingTop: 50,
+          })
+        }
+      >
         Channel
       </Text>
       <FlatList
@@ -62,7 +75,7 @@ const PartnerList = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -75,31 +88,21 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: "#d7b546",
-    padding: 8,
+
     marginVertical: 1,
     marginHorizontal: 3,
-    width: 80,
-    height: 80,
-    borderRadius: 180,
+    width: 320,
+    height: 150,
+    borderRadius: 5,
   },
   title: {
-    fontSize: 11,
+    fontSize: 15,
     color: "#f5f5f5",
     textTransform: "uppercase",
-    paddingTop: 29,
-    paddingLeft: 1,
+    paddingTop: 50,
+    paddingLeft: 10,
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    textAlign: "center",
-  },
-  upnext: {
-    textTransform: "uppercase",
-    fontSize: 24,
-    fontWeight: "500",
-    paddingBottom: 15,
+    textAlign: "left",
   },
 });
 

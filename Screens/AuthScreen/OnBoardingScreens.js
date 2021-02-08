@@ -12,39 +12,45 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const { width, height } = Dimensions.get("screen");
 
 // https://www.flaticon.com/packs/retro-wave
-// inspiration: https://dribbble.com/shots/11164698-Onboarding-screens-animation
-// https://twitter.com/mironcatalin/status/1321180191935373312
+//<div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
-const bgs = ["#303030", "#2B2B2B", "#1F1F1F", "#1B1C1E"];
+const bgs = ["#303030", "#2B2B2B", "#1F1F1F", "#1B1C1E", "#1B1C1E"];
 const DATA = [
   {
     key: "3571572",
-    title: "Welcome to DSTRKT TV",
+    title: "DSTRKT TV",
     description:
-      "I'll back up the multi-byte XSS matrix, that should feed the SCSI application!",
+      "Empowering Athletes of the future and today with the knowledge to be stronger on and off the court.",
     image: "https://image.flaticon.com/icons/png/256/3571/3571572.png",
   },
   {
     key: "3571747",
-    title: "Onboarding Slide 1",
+    title: "TRAIN LIKE A PRO",
     description:
-      "Use the optical SAS system, then you can navigate the auxiliary alarm!",
+      "Workouts and fitness knowledge. Train with industry professionals and take your game to the next level.  ",
     image: "https://image.flaticon.com/icons/png/256/3571/3571747.png",
   },
   {
     key: "3571680",
-    title: "Onboarding Slide 2",
-    description:
-      "The ADP array is down, compress the online sensor so we can input the HTTP panel!",
+    title: "LIFESTYLE SKILLS",
+    description: "Learn the lingo of life. Style tips, financial literacy, networking skills, and more.",
     image: "https://image.flaticon.com/icons/png/256/3571/3571680.png",
   },
   {
     key: "3571603",
-    title: "Onboarding Slide 3",
-    description: "We need to program the open-source IB interface!",
+    title: "ENTERTAINMENT",
+    description: "Behind the scenes footage, music, podcasts, all from your favorite artist and athletes.",
+    image: "https://image.flaticon.com/icons/png/256/3571/3571603.png",
+  },
+  {
+    key: "3571604",
+    title: "SCOUT MEMBERSHIPS",
+    description: "Scout live practices from the comforts of your home schedule private practices with  top athletes.",
     image: "https://image.flaticon.com/icons/png/256/3571/3571603.png",
   },
 ];
+
+
 
 export default function OnboardingScreen({ navigation }) {
   const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -141,6 +147,7 @@ export default function OnboardingScreen({ navigation }) {
                     fontWeight: "800",
                     fontSize: 28,
                     paddingVertical: 10,
+                    textAlign: "center",
                   }}
                   numberOfLines={2}
                   adjustsFontSizeToFit
@@ -148,7 +155,12 @@ export default function OnboardingScreen({ navigation }) {
                   {item.title}
                 </Text>
                 <Text
-                  style={{ color: "#fff", fontWeight: "400", fontSize: 16 }}
+                  style={{
+                    color: "#fff",
+                    fontWeight: "400",
+                    fontSize: 16,
+                    textAlign: "center",
+                  }}
                 >
                   {item.description}
                 </Text>

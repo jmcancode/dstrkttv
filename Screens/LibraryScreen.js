@@ -8,6 +8,7 @@ import {
   Alert,
   FlatList,
   StatusBar,
+  Image,
 } from "react-native";
 // react-native-paper
 import {
@@ -17,30 +18,31 @@ import {
   Button,
   Provider,
   TextInput,
-  Divider,
 } from "react-native-paper";
 // @freakycoder custom apple header
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 //Custom compoents
-import VideoSlider from "../Components/VideoSlider";
+// import VideoSlider from "../Components/VideoSlider";
 
 // expo icons packages
 import { AntDesign } from "@expo/vector-icons";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { useTheme } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("screen");
 
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Recorded Video",
+    title: "Recorded Video One",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Recorded Video",
+    title: "Recorded Video Two",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Recorded Video",
+    title: "Recorded Video Three",
   },
 ];
 const Item = ({ title }) => (
@@ -56,14 +58,19 @@ const Separator = () => <View style={styles.separator} />;
 export default function Library({ navigation }) {
   const renderItem = ({ item }) => <Item title={item.title} />;
   const [visible, setVisible] = React.useState(false);
-  const [text, setText] = React.useState("");
+  const [fullName, setFullName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+  const { colors } = useTheme();
+
   const containerStyle = {
     backgroundColor: "#f5f5f5",
     padding: 20,
     height: "50%",
-    margin: 10,
+    margin: 20,
+    height: "55%",
   };
   return (
     <>
@@ -75,15 +82,17 @@ export default function Library({ navigation }) {
               <AppleHeader
                 dateTitle={null}
                 largeTitle="Live"
+                largeTitleFontColor={colors.text}
                 onPress={() => alert("This will be an account modal")}
               />
-              <Separator />
             </View>
+            <View style={{ height: 20 }} />
             <View
               style={{
                 flex: 1,
                 width: "100%",
                 padding: 5,
+
                 height: 250,
                 backgroundColor: "#1f1f1f",
               }}
@@ -103,12 +112,24 @@ export default function Library({ navigation }) {
                     navigation.navigate("CameraAction");
                   }}
                   color="#fff"
-                />
+                >
+                  Start a Live Video
+                </Button>
               </View>
             </View>
           </View>
           <View>
-            <Text adjustsFontSizeToFit numberOfLines={1} style={styles.title}>
+            <Text
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              style={{
+                color: colors.text,
+                fontSize: 36,
+                fontWeight: "700",
+                paddingTop: 5,
+                paddingLeft: 10,
+              }}
+            >
               LIVE TITLE
             </Text>
             <Text
@@ -132,18 +153,14 @@ export default function Library({ navigation }) {
             <View style={styles.button}>
               <Button
                 mode="text"
-                // color="#1f1f1f"
+                color={colors.text}
                 onPress={() => {
                   Alert.alert("Video Saved");
                 }}
               >
                 Watch Later
               </Button>
-              <Button
-                mode="text"
-                // color="#1f1f1f"
-                onPress={showModal}
-              >
+              <Button mode="text" color={colors.text} onPress={showModal}>
                 Scout Pass
               </Button>
             </View>
@@ -157,7 +174,14 @@ export default function Library({ navigation }) {
               }}
             >
               <Text
-                style={styles.seewhatyoumissed}
+                style={{
+                  color: colors.text,
+                  fontSize: 21,
+                  textTransform: "uppercase",
+                  fontWeight: "700",
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                }}
                 adjustsFontSizeToFit
                 numberOfLines={1}
               >
@@ -165,7 +189,7 @@ export default function Library({ navigation }) {
               </Text>
               <Button
                 mode="text"
-                // color="#000"
+                color={colors.text}
                 onPress={() => Alert.alert("Video Library")}
                 style={{ paddingRight: 5 }}
               >
@@ -190,6 +214,15 @@ export default function Library({ navigation }) {
                   onDismiss={hideModal}
                   contentContainerStyle={containerStyle}
                 >
+                  <Image
+                    source={require("../assets/icon.png")}
+                    style={{
+                      width: 75,
+                      height: 75,
+                      alignSelf: "center",
+                      margin: 10,
+                    }}
+                  />
                   <Text
                     adjustsFontSizeToFit
                     numberOfLines={3}
@@ -200,19 +233,30 @@ export default function Library({ navigation }) {
                     player stats and the ability to request meeting with the
                     player.
                   </Text>
-                  <View style={{ margin: 5 }}>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                    }}
+                  >
                     <TextInput
-                      label="Full Name"
+                      label=" Enter your full name"
                       type="Outlined"
-                      value={text}
-                      onChange={(text) => setText(text)}
+                      value={fullName}
+                      onChange={(fullName) => setFullName(fullName)}
                       style={{ backgroundColor: "transparent" }}
                     />
                     <TextInput
-                      label="Company Email"
+                      label="Enter your company email"
                       type="Outlined"
-                      value={text}
-                      onChange={(text) => setText(text)}
+                      value={email}
+                      onChange={(email) => setEmail(email)}
+                      style={{ backgroundColor: "transparent" }}
+                    />
+                    <TextInput
+                      label="Enter your password"
+                      type="Outlined"
+                      value={password}
+                      onChange={(password) => setPassword(password)}
                       style={{ backgroundColor: "transparent" }}
                     />
                   </View>
@@ -221,51 +265,57 @@ export default function Library({ navigation }) {
                       flexDirection: "row",
                       justifyContent: "space-between",
                       paddingTop: 15,
+                      margin: 5
                     }}
                   >
                     <Button
                       mode="outlined"
-                      compact={true}
+                      // compact={true}
                       accessibilityLabel="subscribe to a scout"
                       onPress={() => Alert.alert("Your subscribed!")}
+                      color="#1f1f1f"
+                      labelStyle={{ fontSize: 11, width: 104 }}
                     >
-                      SubScription
+                      Subscribe
                     </Button>
 
                     <Button
                       mode="outlined"
-                      compact={true}
+                      // compact={true}
                       accessibilityLabel="subscribe to a scout"
                       onPress={() => Alert.alert("Day Pass granted!")}
+                      color="#1f1f1f"
+                      labelStyle={{ fontSize: 11, width: 104 }}
                     >
                       Day Pass
                     </Button>
                   </View>
-                  <View>
+                  <View
+                    style={{
+                      flexDirection: "row-reverse",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <Text
                       adjustsFontSizeToFit
                       numberOfLines={1}
                       style={{
-                        flex: 1,
-                        position: "absolute",
+                        fontSize: 12,
                         paddingTop: 5,
-                        fontSize: 10,
-                        paddingLeft: 270,
                         color: "#777",
+                        paddingRight: 35,
                       }}
                     >
-                      $55.00 / per practice
+                      $25.00 / each
                     </Text>
                     <Text
                       adjustsFontSizeToFit
                       numberOfLines={1}
                       style={{
-                        flex: 1,
-                        position: "absolute",
-                        paddingTop: 5,
-                        fontSize: 10,
-                        paddingLeft: 10,
+                        fontSize: 12,
                         color: "#777",
+                        paddingTop: 5,
+                        paddingLeft: 30,
                       }}
                     >
                       $4.99 / Month
@@ -306,12 +356,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 90,
   },
-  title: {
-    fontSize: 36,
-    fontWeight: "700",
-    paddingTop: 5,
-    paddingLeft: 10,
-  },
+
   prevtitle: {
     fontSize: 36,
     fontWeight: "700",

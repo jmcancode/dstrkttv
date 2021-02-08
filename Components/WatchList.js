@@ -1,3 +1,4 @@
+import { useTheme } from "@react-navigation/native";
 import React from "react";
 import {
   SafeAreaView,
@@ -34,10 +35,23 @@ const Item = ({ title, style }) => (
 
 const UpNextList = () => {
   const renderItem = ({ item }) => <Item title={item.title} />;
-
+  const { colors } = useTheme();
   return (
     <SafeAreaView style={styles.container}>
-      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.upnext}>
+      <Text
+        adjustsFontSizeToFit
+        numberOfLines={1}
+        style={
+          ([styles.upnext],
+          {
+            color: colors.text,
+            textTransform: "uppercase",
+            fontSize: 24,
+            fontWeight: "500",
+            paddingTop: 25,
+          })
+        }
+      >
         Up Next
       </Text>
       <Text adjustsFontSizeToFit numberOfLines={1} style={styles.upnextsub}>
@@ -70,18 +84,13 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   title: {
-    fontSize: 12,
+    fontSize: 15,
     color: "#f5f5f5",
     textTransform: "uppercase",
-    paddingLeft: 5,
+    paddingLeft: 10,
+    paddingTop: 50
   },
-  upnext: {
-    textTransform: "uppercase",
-    fontSize: 24,
-    fontWeight: "500",
-    
-    paddingTop: 15,
-  },
+  upnext: {},
   upnextsub: {
     fontSize: 12,
     color: "#777",

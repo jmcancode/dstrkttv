@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from "react-native";
 // expo packages
 import { Camera } from "expo-camera";
+// expo icons
 import { MaterialIcons } from "@expo/vector-icons";
-export default function CameraAction() {
+import { Ionicons } from "@expo/vector-icons";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
+const { width, height } = Dimensions.get("window");
+
+export default function CameraAction({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const cameraRef = useRef();
+  const snap = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.current.takePictureAsync();
+      AsyncStorage.setItem(`@{user.uid}-photo`, photo.uri);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -28,7 +41,11 @@ export default function CameraAction() {
   }
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera
+        style={styles.camera}
+        type={type}
+        ref={(camera) => (cameraRef.current = camera)}
+      >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -40,7 +57,18 @@ export default function CameraAction() {
               );
             }}
           >
-            <MaterialIcons name="camera-front" size={44} color="#f5f5f5" />
+            <MaterialIcons name="camera-front" size={34} color="#f5f5f5" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.camerabutton} onPress={snap}>
+            <Ionicons name="ios-radio-button-on" size={84} color="#f5f5f5" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.pop();
+            }}
+          >
+            <MaterialIcons name="close" size={34} color="#f5f5f5" />
           </TouchableOpacity>
         </View>
       </Camera>
@@ -56,15 +84,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    flex: 1,
     backgroundColor: "transparent",
     flexDirection: "row",
-    margin: 20,
+    justifyContent: "space-between",
+    flex: 1,
+    margin: 15,
+    padding: 5,
+    paddingBottom: 15,
+    paddingTop: 19,
   },
   button: {
-    flex: 0.1,
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     alignItems: "center",
+  },
+  camerabutton: {
+    alignSelf: "flex-end",
   },
   text: {
     fontSize: 25,

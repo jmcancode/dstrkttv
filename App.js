@@ -1,13 +1,26 @@
 import React from "react";
 // react-navigation v5
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme as NavigationDefaultTheme,
+  DarkTheme as NavigationDarkTheme,
+  useTheme,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+// react native paper
+import {
+  Provider as PaperProvider,
+  DefaultTheme as PaperDefaultTheme,
+  DarkTheme as PaperDarkTheme,
+  Button,
+} from "react-native-paper";
+// react native
+import { ActivityIndicator, Alert } from "react-native";
+
 // expo icons
-import { Octicons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Octicons, Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 // Auth Context
 import { AuthContext } from "./context";
@@ -28,6 +41,12 @@ import CameraAction from "./Components/Camera";
 import DstrktX from "./Screens/Channels/dstrktx";
 import Modal from "./Screens/Modal/Modal";
 import SkyClarkTv from "./Screens/Channels/skyclarktv";
+import JeffOsborne from "./Screens/Channels/jeffosborne";
+import theRoyalGuard from "./Screens/Channels/theroyaguard";
+import kaiSotto from "./Screens/Channels/kaisotto";
+import MusicPlayer from "./Components/MusicPlayer";
+import LearnMore from "./Screens/Channels/dstrkt_details";
+import SelectWorkoutScreen from "./Screens/Channels/dstrktx_workout";
 enableScreens();
 
 const Tabs = createBottomTabNavigator();
@@ -76,12 +95,13 @@ const HomeStackScreen = () => (
   </HomeStack.Navigator>
 );
 
-const ChannelsStackScreen = ({ navigation, route }) => {
+const ChannelsStackScreen = ({ navigation, route, colors }) => {
   if (route.state && route.state.index > 0) {
     navigation.setOptions({ tabBarVisible: false });
   } else {
     navigation.setOptions({ tabBarVisible: true });
   }
+
   return (
     <ChannelsStack.Navigator>
       <ChannelsStack.Screen
@@ -108,6 +128,25 @@ const ChannelsStackScreen = ({ navigation, route }) => {
         }}
       />
       <ChannelsStack.Screen
+        name={"SelectWorkout"}
+        component={SelectWorkoutScreen}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerBackAccessibilityLabel: null
+        }}
+      />
+      <ChannelsStack.Screen
+        name={"Learn More"}
+        component={LearnMore}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: "",
+        }}
+      />
+      <ChannelsStack.Screen
         name="SkyClarkTv"
         component={SkyClarkTv}
         options={{
@@ -116,28 +155,82 @@ const ChannelsStackScreen = ({ navigation, route }) => {
           headerBackTitle: false,
         }}
       />
+      <ChannelsStack.Screen
+        name="JeffO"
+        component={JeffOsborne}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerBackAccessibilityLabel: null,
+        }}
+      />
+      <ChannelsStack.Screen
+        name="theRoyalGuard"
+        component={theRoyalGuard}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerBackAccessibilityLabel: null,
+        }}
+      />
+      <ChannelsStack.Screen
+        name="KaiSotto"
+        component={kaiSotto}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerBackAccessibilityLabel: null,
+        }}
+      />
+      <ChannelsStack.Screen
+        name="musicPlayer"
+        component={MusicPlayer}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerBackAccessibilityLabel: false,
+          headerRight: null,
+          headerLeft: null,
+        }}
+      />
     </ChannelsStack.Navigator>
   );
 };
 
-const LibraryStackScreen = () => (
-  <LibraryStack.Navigator>
-    <LibraryStack.Screen
-      name="Library"
-      component={Library}
-      options={{ headerTransparent: true, headerTitle: null }}
-    />
-    <LibraryStack.Screen
-      name="CameraAction"
-      component={CameraAction}
-      options={{
-        headerTransparent: true,
-        headerTitle: null,
-        tabBarVisible: true,
-      }}
-    />
-  </LibraryStack.Navigator>
-);
+const LibraryStackScreen = ({ navigation, route }) => {
+  if (route.state && route.state.index > 0) {
+    navigation.setOptions({ tabBarVisible: false });
+  } else {
+    navigation.setOptions({ tabBarVisible: true });
+  }
+
+  return (
+    <LibraryStack.Navigator>
+      <LibraryStack.Screen
+        name="Library"
+        component={Library}
+        options={{ headerTransparent: true, headerTitle: null }}
+      />
+      <LibraryStack.Screen
+        name="CameraAction"
+        component={CameraAction}
+        options={{
+          headerTransparent: true,
+          headerTitle: null,
+          headerBackTitle: null,
+          headerTruncatedBackTitle: true,
+          headerBackAccessibilityLabel: null,
+          headerLeft: null,
+          gestureEnabled: false,
+        }}
+      />
+    </LibraryStack.Navigator>
+  );
+};
 
 const SearchStackScreen = () => (
   <SearchStack.Navigator>
@@ -245,7 +338,7 @@ const RootStackScreen = ({ userToken }) => (
     <RootStack.Screen
       name="Modal"
       component={Modal}
-      options={{ animationEnabled: true, headerTitle: "Account" }}
+      options={{ animationEnabled: true }}
     />
   </RootStack.Navigator>
 );
@@ -253,6 +346,36 @@ const RootStackScreen = ({ userToken }) => (
 export default () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
+
+  const CustomDefaultTheme = {
+    ...NavigationDefaultTheme,
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      background: "#ffffff",
+      backdrop: "#ffffff",
+      text: "#333333",
+      placeholder: "#333333",
+    },
+  };
+
+  const CustomDarkTheme = {
+    ...NavigationDarkTheme,
+    ...PaperDarkTheme,
+    dark: true,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      background: "#333333",
+      backdrop: "#333333",
+      text: "#ffffff",
+      placeholder: "#ffffff",
+    },
+  };
+
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   const authContext = React.useMemo(() => {
     return {
@@ -268,6 +391,9 @@ export default () => {
         setIsLoading(false);
         setUserToken(null);
       },
+      toggleTheme: () => {
+        setIsDarkTheme((isDarkTheme) => !isDarkTheme);
+      },
     };
   }, []);
 
@@ -278,14 +404,16 @@ export default () => {
   }, []);
 
   if (isLoading) {
-    return <Splash />;
+    return <ActivityIndicator />;
   }
 
   return (
-    <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        <RootStackScreen userToken={userToken} />
-      </NavigationContainer>
-    </AuthContext.Provider>
+    <PaperProvider theme={theme}>
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer theme={theme}>
+          <RootStackScreen userToken={userToken} />
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </PaperProvider>
   );
 };

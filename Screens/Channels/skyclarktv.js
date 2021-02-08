@@ -6,24 +6,25 @@ import {
   Alert,
   ImageBackground,
   StatusBar,
+  Image,
 } from "react-native";
 import { Button } from "react-native-paper";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
   },
   image: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
   },
-  imagebutton: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
+
+  paragraph: {
+    paddingTop: 10,
+    color: "#fff",
+    margin: 5,
+    padding: 5,
   },
 });
 
@@ -41,10 +42,19 @@ export default class SkyClarkTv extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <StatusBar hidden/>
+        <StatusBar hidden />
         <ImageBackground source={image} style={styles.image}>
           <View>
-            <View style={styles.imagebutton}>
+            <View>
+              <Image
+                source={require("../../assets/icon.png")}
+                style={{
+                  width: 100,
+                  height: 100,
+                  resizeMode: "contain",
+                  alignSelf: "center",
+                }}
+              />
               <Text
                 adjustsFontSizeToFit
                 numberOfLines={3}
@@ -54,22 +64,58 @@ export default class SkyClarkTv extends Component {
                   color: "#f5f5f5",
                   fontWeight: "bold",
                   fontSize: 25,
-                  backgroundColor: "#0033A0",
+                  backgroundColor: "rgba(255,255,255, 0.2)",
                   margin: 5,
                   padding: 10,
                 }}
               >
-                Sky clark tv
+                Skyy clark tv
               </Text>
-              <Button
-                mode="outlined"
-                onPress={() => Alert.alert("Prompt subscription service")}
-                color="#f5f5f5"
-                compact={true}
+              <View style={{ height: 10 }} />
+              <View>
+                <Text
+                  adjustsFontSizeToFit
+                  numberOfLines={1}
+                  style={{
+                    justifyContent: "center",
+                    color: "#fff",
+                    alignSelf: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {" "}
+                  Year One | University of Kentucky
+                </Text>
+                <Text style={styles.paragraph}>
+                  Vivamus suscipit tortor eget felis porttitor volutpat. Lorem
+                  ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                  magna justo, lacinia eget consectetur sed, convallis at
+                  tellus. Pellentesque in ipsum id orci porta dapibus. Curabitur
+                  aliquet quam id dui posuere blandit.
+                </Text>
+              </View>
+              <View
+                style={{ flexDirection: "row", justifyContent: "space-around" }}
               >
-                {" "}
-                Subscribe
-              </Button>
+                <Button
+                  mode="text"
+                  onPress={() => Alert.alert("Prompt subscription service")}
+                  color="#f5f5f5"
+                  compact={true}
+                >
+                  {" "}
+                  Game Schedule
+                </Button>
+                <Button
+                  mode="text"
+                  onPress={() => Alert.alert("Prompt subscription service")}
+                  color="#f5f5f5"
+                  compact={true}
+                >
+                  {" "}
+                  Subscribe
+                </Button>
+              </View>
             </View>
           </View>
         </ImageBackground>

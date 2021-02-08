@@ -6,15 +6,19 @@ import {
   StyleSheet,
   Button,
   Dimensions,
+  ImageBackground,
 } from "react-native";
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
+import { useTheme } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("screen");
 const Separator = () => <View style={styles.separator} />;
 
 export default function Channel({ navigation }) {
+  const theme = useTheme();
+  const { colors } = useTheme();
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -22,10 +26,11 @@ export default function Channel({ navigation }) {
           <AppleHeader
             dateTitle={null}
             largeTitle="Discover"
+            largeTitleFontColor={colors.text}
             // imageSource={require("../assets/rr23.jpeg")}
             onPress={() => alert("This will be an account modal")}
           />
-          <Separator />
+          <View style={{ height: 20 }} />
           <View
             style={{
               flex: 1,
@@ -35,7 +40,6 @@ export default function Channel({ navigation }) {
           >
             <View
               style={{
-                // flex: 1,
                 padding: 15,
                 height: 250,
                 backgroundColor: "#1f1f1f",
@@ -74,7 +78,7 @@ export default function Channel({ navigation }) {
                   color="#fff"
                 />
                 <Button
-                  title="SKY TV"
+                  title="SKYY TV"
                   onPress={() => {
                     navigation.navigate("SkyClarkTv");
                   }}
@@ -98,11 +102,11 @@ export default function Channel({ navigation }) {
                   color="#fff"
                 />
                 <Button
-                  title="KY TV"
+                  title="KAI SOTTO TV"
                   onPress={() => {
-                    navigation.navigate("DstrktXScreen");
+                    navigation.navigate("KaiSotto");
                   }}
-                   color="#fff"
+                  color="#fff"
                 />
               </View>
             </View>
@@ -118,14 +122,15 @@ export default function Channel({ navigation }) {
               <View style={styles.camera}>
                 <MaterialCommunityIcons name="music" size={24} color="#FFF" />
                 <Button
-                  title="JEFFERY OSBORNE"
+                  title="JEFFREY OSBORNE"
                   onPress={() => {
-                    navigation.navigate("DstrktXScreen");
+                    navigation.navigate("JeffO");
                   }}
-                   color="#fff"
+                  color="#fff"
                 />
               </View>
             </View>
+
             <View
               style={{
                 padding: 15,
@@ -136,17 +141,13 @@ export default function Channel({ navigation }) {
               }}
             >
               <View style={styles.camera}>
-                <MaterialCommunityIcons
-                  name="bow-tie"
-                  size={24}
-                  color="#fff"
-                />
+                <MaterialCommunityIcons name="bow-tie" size={24} color="#fff" />
                 <Button
                   title="THE ROYAL GUARD"
                   onPress={() => {
-                    navigation.navigate("DstrktXScreen");
+                    navigation.navigate("theRoyalGuard");
                   }}
-                   color="#fff"
+                  color="#fff"
                 />
               </View>
             </View>
