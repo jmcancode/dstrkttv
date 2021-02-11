@@ -47,6 +47,8 @@ import kaiSotto from "./Screens/Channels/kaisotto";
 import MusicPlayer from "./Components/MusicPlayer";
 import LearnMore from "./Screens/Channels/dstrkt_details";
 import SelectWorkoutScreen from "./Screens/Channels/dstrktx_workout";
+import SettingsScreen from "./Screens/Settings/UserSettings";
+import VideoLibrary from "./Screens/Settings/VideoLibraryScreen";
 enableScreens();
 
 const Tabs = createBottomTabNavigator();
@@ -134,7 +136,7 @@ const ChannelsStackScreen = ({ navigation, route, colors }) => {
           headerTransparent: true,
           headerTitle: null,
           headerBackTitle: null,
-          headerBackAccessibilityLabel: null
+          headerBackAccessibilityLabel: null,
         }}
       />
       <ChannelsStack.Screen
@@ -338,6 +340,16 @@ const RootStackScreen = ({ userToken }) => (
     <RootStack.Screen
       name="Modal"
       component={Modal}
+      options={{ animationEnabled: true }}
+    />
+    <RootStack.Screen
+      name="SettingsScreen"
+      component={SettingsScreen}
+      options={{ animationEnabled: true, headerBackTitle: "back to settings" }}
+    />
+    <RootStack.Screen
+      name="VideoLib"
+      component={VideoLibrary}
       options={{ animationEnabled: true }}
     />
   </RootStack.Navigator>

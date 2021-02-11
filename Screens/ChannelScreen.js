@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Text,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  Button,
-  Dimensions,
-  ImageBackground,
-} from "react-native";
+import { View, StyleSheet, Button, Dimensions, StatusBar } from "react-native";
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -21,6 +13,7 @@ export default function Channel({ navigation }) {
   const { colors } = useTheme();
   return (
     <ScrollView>
+      <StatusBar hidden />
       <View style={styles.container}>
         <View style={styles.applehead}>
           <AppleHeader
@@ -42,7 +35,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "#d7b546",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -66,7 +59,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "#d7b546",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -90,7 +83,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "#d7b546",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -114,7 +107,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "#d7b546",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -135,7 +128,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#1f1f1f",
+                backgroundColor: "#d7b546",
                 borderRadius: 5,
                 margin: 5,
               }}

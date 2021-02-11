@@ -2,7 +2,6 @@ import React from "react";
 import {
   Text,
   View,
-  SafeAreaView,
   StyleSheet,
   Dimensions,
   StatusBar,
@@ -31,7 +30,7 @@ export default function Home({ navigation }) {
   return (
     <>
       <ScrollView alwaysBounceVertical>
-        <StatusBar />
+        <StatusBar hidden />
         <View>
           <View style={styles.applehead}>
             <AppleHeader
@@ -63,13 +62,12 @@ export default function Home({ navigation }) {
               <View style={{ justifyContent: "center" }}>
                 <View
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, .2)",
+                    backgroundColor: "rgba(255, 255, 255, .85)",
                     justifyContent: "center",
                     alignItems: "center",
                     height: 350,
                     width: "100%",
                     alignContent: "center",
-                    borderRadius: 5,
                   }}
                 >
                   <View>
@@ -91,13 +89,16 @@ export default function Home({ navigation }) {
                   >
                     sponsored content
                   </Text>
-                  <Button
-                    mode="text"
-                    color={colors.text}
-                    onPress={() => Alert.alert("Sponsored page")}
-                  >
-                    learn more
-                  </Button>
+                  <View>
+                    <Button
+                      mode="text"
+                      color="#777"
+                      onPress={() => navigation.navigate("VideoScreen")}
+                      style={{ margin: 5 }}
+                    >
+                      Watch a preview
+                    </Button>
+                  </View>
                 </View>
               </View>
             </ImageBackground>

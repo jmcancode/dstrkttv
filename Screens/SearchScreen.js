@@ -39,6 +39,9 @@ export default function Search() {
             title="Sign-out"
             onPress={() => signOut()}
           />
+          <View>
+            <Text>Search Results will show here.</Text>
+          </View>
         </View>
       </View>
     </View>

@@ -14,7 +14,7 @@ const SearchQuery = () => {
       value={searchQuery}
       style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
       autoCapitalize={false}
-      autoCompleteType={false}
+      autoCompleteType="off"
       autoCorrect={false}
     />
   );

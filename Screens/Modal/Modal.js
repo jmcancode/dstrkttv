@@ -5,7 +5,6 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
-  ImageBackground,
   Dimensions,
   Alert,
 } from "react-native";
@@ -16,7 +15,6 @@ import { List, Switch, TouchableRipple, Text } from "react-native-paper";
 // auth context
 import { AuthContext } from "../../context";
 import { useTheme } from "@react-navigation/native";
-import { Touchable } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -51,9 +49,7 @@ export const Modal = ({ navigation }) => {
             <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
               MY VIDEOS
             </List.Subheader>
-            <TouchableOpacity
-              onPress={() => Alert.alert("User History Screen")}
-            >
+            <TouchableOpacity onPress={() => navigation.navigate("VideoLib")}>
               <List.Item title="Video Library" />
             </TouchableOpacity>
           </List.Section>
@@ -62,7 +58,7 @@ export const Modal = ({ navigation }) => {
               SCHEDULE A VISIT
             </List.Subheader>
             <TouchableOpacity
-              onPress={() => Alert.alert("DSTRKTX Subscription Screen")}
+              onPress={() => navigation.navigate("DstrktXScreen")}
             >
               <List.Item title="Athlete Training" />
             </TouchableOpacity>
@@ -78,9 +74,14 @@ export const Modal = ({ navigation }) => {
             <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
               SETTINGS
             </List.Subheader>
-            <TouchableOpacity onPress={() => Alert.alert("Settings page")}>
-              <List.Item title="Account Details" />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("SettingsScreen")}
+            >
+              <List.Item title="Advanced Settings" />
             </TouchableOpacity>
+            <TouchableRipple>
+              <List.Item title="Sign-Out" onPress={() => signOut()} />
+            </TouchableRipple>
           </List.Section>
           <TouchableRipple
             onPress={() => {
@@ -112,7 +113,6 @@ const styles = StyleSheet.create({
     margin: 20,
     paddingTop: 10,
   },
-  texttitle: {},
   headercontainer: {
     flexDirection: "row",
     justifyContent: "space-between",

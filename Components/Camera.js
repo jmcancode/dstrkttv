@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Alert,
+  Image,
 } from "react-native";
 // expo packages
 import { Camera } from "expo-camera";
@@ -13,12 +14,45 @@ import { Camera } from "expo-camera";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { AsyncStorage } from "@react-native-async-storage/async-storage";
+import { Entypo } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+
 const { width, height } = Dimensions.get("window");
 
 export default function CameraAction({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [image, setImage] = useState(null);
   const cameraRef = useRef();
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
   const snap = async () => {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
@@ -70,6 +104,17 @@ export default function CameraAction({ navigation }) {
           >
             <MaterialIcons name="close" size={34} color="#f5f5f5" />
           </TouchableOpacity>
+          <View style={styles.pickImage}>
+            <TouchableOpacity onPress={() => pickImage()}>
+              <Entypo name="images" size={24} color="#fff" />
+            </TouchableOpacity>
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{ width: 200, height: 200 }}
+              />
+            )}
+          </View>
         </View>
       </Camera>
     </View>
@@ -104,5 +149,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "white",
     fontWeight: "700",
+  },
+  pickImage: {
+    position: "absolute",
+    top: 830,
+    left: 350,
+
   },
 });

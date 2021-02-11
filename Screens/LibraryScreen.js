@@ -28,6 +28,7 @@ import { AppleHeader } from "@freakycoder/react-native-header-view";
 import { AntDesign } from "@expo/vector-icons";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useTheme } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -160,9 +161,12 @@ export default function Library({ navigation }) {
               >
                 Watch Later
               </Button>
-              <Button mode="text" color={colors.text} onPress={showModal}>
-                Scout Pass
-              </Button>
+              <MaterialIcons name="save-alt" size={25} style={{paddingTop: 3}} onPress={() => Alert.alert("Video Saved")} />
+              {/* <Button
+                mode="text"
+                color={colors.text}
+                onPress={showModal}
+              ></Button> */}
             </View>
           </View>
           <Separator />
@@ -265,7 +269,7 @@ export default function Library({ navigation }) {
                       flexDirection: "row",
                       justifyContent: "space-between",
                       paddingTop: 15,
-                      margin: 5
+                      margin: 5,
                     }}
                   >
                     <Button
@@ -386,7 +390,6 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "flex-start",
-    justifyContent: "space-between",
     paddingTop: 2,
     paddingBottom: 10,
   },

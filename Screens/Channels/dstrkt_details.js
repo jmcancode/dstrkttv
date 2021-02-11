@@ -102,15 +102,14 @@ const LearnMore = () => {
               <View>
                 <Button
                   onPress={showDatepicker}
-                  title="SELECT A DATE"
+                  title="Select a date to visit"
                   color="#1f1f1f"
-                  style={{ backgroundColor: "blue" }}
                 />
               </View>
               <View>
                 <Button
                   onPress={showTimepicker}
-                  title="TIME SLOTS"
+                  title="Time Slots"
                   color="#1f1f1f"
                 />
               </View>

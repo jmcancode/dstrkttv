@@ -11,13 +11,17 @@ import {
 } from "react-native";
 // expo-av
 import { Video } from "expo-av";
+
 // RN Picker
 import { Picker } from "@react-native-picker/picker";
 
 const { width } = Dimensions.get("screen").width;
+const { height } = Dimensions.get("screen").height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: width,
+    height: height,
   },
   title: {
     fontSize: 36,
@@ -77,13 +81,13 @@ export default function VideoPlayer() {
         </View>
         <View style={styles.fixToText}>
           <Button
-            title="Meal Plan"
+            title="Workout Details"
             onPress={() => alert("Are you ready to change your diet?")}
             color="#000"
             accessibilityLabel="Call to action for those who can not hear."
           />
           <Button
-            title="Workout Kit"
+            title="Subscribe"
             onPress={() => alert("Are you ready to access your workout?")}
             color="#000"
             accessibilityLabel="Call to action for those who can not hear."
