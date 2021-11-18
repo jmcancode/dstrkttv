@@ -20,7 +20,7 @@ import {
 import { ActivityIndicator, Alert } from "react-native";
 
 // expo icons
-import { Octicons, Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Octicons, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
 // Auth Context
 import { AuthContext } from "./context";
@@ -49,6 +49,9 @@ import LearnMore from "./Screens/Channels/dstrkt_details";
 import SelectWorkoutScreen from "./Screens/Channels/dstrktx_workout";
 import SettingsScreen from "./Screens/Settings/UserSettings";
 import VideoLibrary from "./Screens/Settings/VideoLibraryScreen";
+
+import ScoutPassScreen from "./Screens/Settings/ScoutPassScreen";
+
 enableScreens();
 
 const Tabs = createBottomTabNavigator();
@@ -262,7 +265,7 @@ const TabsScreen = () => (
       },
     })}
     tabBarOptions={{
-      activeTintColor: "#d7b546",
+      activeTintColor: "#e4bd7a",
       inactiveTintColor: "#777",
     }}
   >
@@ -294,9 +297,9 @@ const TabsScreen = () => (
       component={LibraryStackScreen}
       showLabel={false}
       options={{
-        tabBarLabel: "Watch Live",
+        tabBarLabel: "Labs",
         tabBarIcon: ({ color, size }) => (
-          <MaterialIcons name="live-tv" size={size} color={color} />
+          <SimpleLineIcons name="chemistry" size={size} color={color} />
         ),
       }}
     />
@@ -350,6 +353,11 @@ const RootStackScreen = ({ userToken }) => (
     <RootStack.Screen
       name="VideoLib"
       component={VideoLibrary}
+      options={{ animationEnabled: true }}
+    />
+    <RootStack.Screen
+      name="ScoutPass"
+      component={ScoutPassScreen}
       options={{ animationEnabled: true }}
     />
   </RootStack.Navigator>

@@ -1,37 +1,32 @@
 import React from "react";
-import { Text, View, SafeAreaView, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, Alert } from "react-native";
 
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 
 import { AuthContext } from "../context";
 import { useTheme } from "@react-navigation/native";
-import { auth } from "../firebase";
 import SearchQuery from "../Components/SearchBar/SearchBar";
 
 export default function Search() {
   const { colors } = useTheme();
   const { signOut } = React.useContext(AuthContext);
 
-  const signOutUser = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        navigation.replace("SignIn");
-      });
-  };
   return (
     <View style={styles.applehead}>
       <AppleHeader
         dateTitle={null}
         largeTitle="Search"
         largeTitleFontColor={colors.text}
-        onPress={() => alert("Account Information will live here!")}
+        onPress={() => Alert.alert("Account Information will live here!")}
       />
-
       <View>
         <View style={styles.searchcontainer}>
           <SearchQuery />
+        </View>
+        <View>
+          <Text style={{ color: "#777", alignSelf: "center", margin: 15 }}>
+            Search Results will show here.
+          </Text>
         </View>
         <View style={styles.container}>
           <Button
@@ -39,9 +34,6 @@ export default function Search() {
             title="Sign-out"
             onPress={() => signOut()}
           />
-          <View>
-            <Text>Search Results will show here.</Text>
-          </View>
         </View>
       </View>
     </View>

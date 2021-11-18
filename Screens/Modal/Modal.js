@@ -7,12 +7,12 @@ import {
   ScrollView,
   Dimensions,
   Alert,
+  Button,
 } from "react-native";
-// icons
 import { Ionicons } from "@expo/vector-icons";
-//react native paper
+
 import { List, Switch, TouchableRipple, Text } from "react-native-paper";
-// auth context
+
 import { AuthContext } from "../../context";
 import { useTheme } from "@react-navigation/native";
 
@@ -46,7 +46,7 @@ export const Modal = ({ navigation }) => {
         </View>
         <View style={{ paddingTop: 5 }}>
           <List.Section>
-            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+            <List.Subheader style={{ fontWeight: "900", fontSize: 12 }}>
               MY VIDEOS
             </List.Subheader>
             <TouchableOpacity onPress={() => navigation.navigate("VideoLib")}>
@@ -54,7 +54,7 @@ export const Modal = ({ navigation }) => {
             </TouchableOpacity>
           </List.Section>
           <List.Section>
-            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+            <List.Subheader style={{ fontWeight: "900", fontSize: 12 }}>
               SCHEDULE A VISIT
             </List.Subheader>
             <TouchableOpacity
@@ -71,7 +71,7 @@ export const Modal = ({ navigation }) => {
             </TouchableOpacity>
           </List.Section>
           <List.Section>
-            <List.Subheader style={{ fontWeight: "900", fontSize: "12" }}>
+            <List.Subheader style={{ fontWeight: "900", fontSize: 12 }}>
               SETTINGS
             </List.Subheader>
             <TouchableOpacity
@@ -79,9 +79,13 @@ export const Modal = ({ navigation }) => {
             >
               <List.Item title="Advanced Settings" />
             </TouchableOpacity>
-            <TouchableRipple>
-              <List.Item title="Sign-Out" onPress={() => signOut()} />
-            </TouchableRipple>
+
+            <Button
+              title="Sign-out"
+              color="#1f1f1f"
+              onPress={() => signOut()}
+              
+            />
           </List.Section>
           <TouchableRipple
             onPress={() => {

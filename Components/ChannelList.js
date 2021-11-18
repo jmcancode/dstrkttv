@@ -7,32 +7,24 @@ import { Entypo } from "@expo/vector-icons";
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Sports",
+    title: "Training",
     icon: <Entypo name="sports-club" size={24} color="black" />,
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Performance",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Nutrition",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Finance",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d74",
     title: "Life Skills",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29e79",
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Finance",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d73",
     title: "Mental",
   },
 ];
 
-const Item = ({ title, icon }) => (
+const Item = ({ title }) => (
   <TouchableOpacity style={styles.item}>
     <Entypo name="sports-club" size={12} color="#f5f5f5" />
     <Text style={styles.title}>{title}</Text>
@@ -44,9 +36,7 @@ const GenreList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("SkyClarkTv")}
-      >
+      <TouchableOpacity onPress={() => navigation.navigate("SkyClarkTv")}>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -68,7 +58,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: "row",
-    backgroundColor: "#d7b546",
+    backgroundColor: "#a68d53",
     padding: 8,
     marginVertical: 1,
     marginHorizontal: 3,

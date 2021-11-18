@@ -13,9 +13,9 @@ const SearchQuery = () => {
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
-      autoCapitalize={false}
+      autoCapitalize="false"
       autoCompleteType="off"
-      autoCorrect={false}
+      autoCorrect="false"
     />
   );
 };

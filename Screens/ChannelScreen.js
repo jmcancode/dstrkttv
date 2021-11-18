@@ -6,7 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useTheme } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("screen");
-const Separator = () => <View style={styles.separator} />;
+// const Separator = () => <View style={styles.separator} />;
 
 export default function Channel({ navigation }) {
   const theme = useTheme();
@@ -18,7 +18,7 @@ export default function Channel({ navigation }) {
         <View style={styles.applehead}>
           <AppleHeader
             dateTitle={null}
-            largeTitle="Discover"
+            largeTitle="Channels"
             largeTitleFontColor={colors.text}
             // imageSource={require("../assets/rr23.jpeg")}
             onPress={() => alert("This will be an account modal")}
@@ -35,7 +35,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#d7b546",
+                backgroundColor: "#a68d53",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -47,7 +47,7 @@ export default function Channel({ navigation }) {
                   color="#fff"
                 />
                 <Button
-                  title="DSTRKT X"
+                  title="TRAINING"
                   onPress={() => {
                     navigation.navigate("DstrktXScreen");
                   }}
@@ -59,7 +59,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#d7b546",
+                backgroundColor: "#a68d53",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -78,12 +78,12 @@ export default function Channel({ navigation }) {
                   color="#fff"
                 />
               </View>
-            </View>
-            <View
+            </View> 
+             <View
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#d7b546",
+                backgroundColor: "#a68d53",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -107,7 +107,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#d7b546",
+                backgroundColor: "#a68d53",
                 borderRadius: 5,
                 margin: 5,
               }}
@@ -128,7 +128,7 @@ export default function Channel({ navigation }) {
               style={{
                 padding: 15,
                 height: 250,
-                backgroundColor: "#d7b546",
+                backgroundColor: "#a68d53",
                 borderRadius: 5,
                 margin: 5,
               }}

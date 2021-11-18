@@ -19,7 +19,7 @@ export default function SignIn() {
     <>
       <View style={styles.container}>
         <Image source={require("../../assets/icon.png")} style={styles.image} />
-        <Text style={styles.text}>WELCOME back</Text>
+        <Text style={styles.text}>For athletes by athletes</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter your email address"

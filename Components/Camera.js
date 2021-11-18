@@ -1,23 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-  Alert,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 // expo packages
 import { Camera } from "expo-camera";
 // expo icons
-import { MaterialIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
-import { Entypo } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
+import { MaterialIcons, Entypo, Ionicons } from "@expo/vector-icons";
 
-const { width, height } = Dimensions.get("window");
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
+
+import * as ImagePicker from "expo-image-picker";
 
 export default function CameraAction({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -56,7 +46,7 @@ export default function CameraAction({ navigation }) {
   const snap = async () => {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
-      AsyncStorage.setItem(`@{user.uid}-photo`, photo.uri);
+      AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
     }
   };
 
@@ -154,6 +144,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 830,
     left: 350,
-
   },
 });

@@ -14,7 +14,6 @@ import { Button, shadow } from "react-native-paper";
 // @freakycoder package for app header
 import { AppleHeader } from "@freakycoder/react-native-header-view";
 // custom components
-import CameraAction from "../Components/Camera";
 import GenreList from "../Components/ChannelList";
 import UpNextList from "../Components/WatchList";
 import PartnerList from "../Components/PartnerList";
@@ -62,7 +61,7 @@ export default function Home({ navigation }) {
               <View style={{ justifyContent: "center" }}>
                 <View
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, .85)",
+                    backgroundColor: "rgba(255, 255, 255, .5)",
                     justifyContent: "center",
                     alignItems: "center",
                     height: 350,
@@ -87,12 +86,12 @@ export default function Home({ navigation }) {
                       padding: 5,
                     }}
                   >
-                    sponsored content
+                    Full body workout
                   </Text>
                   <View>
                     <Button
                       mode="text"
-                      color="#777"
+                      color="#303538"
                       onPress={() => navigation.navigate("VideoScreen")}
                       style={{ margin: 5 }}
                     >

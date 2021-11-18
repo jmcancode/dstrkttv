@@ -52,9 +52,10 @@ const SettingsScreen = ({ navigation }) => {
   };
 
   const handlePress = () => setExpanded(!expanded);
+
   return (
-    <ScrollView bounces style={{ width: width, height: height, marginTop: 15 }}>
-      <View style={{ alignSelf: "flex-end", marginRight: 15 }}>
+    <ScrollView bounces style={{ width: width, height: height, marginTop: 25 }}>
+      <View style={{ alignSelf: "flex-end", marginRight: 19 }}>
         <TouchableOpacity onPress={() => navigation.pop()}>
           <Ionicons name="close-outline" size={24} color={colors.text} />
         </TouchableOpacity>
@@ -64,7 +65,11 @@ const SettingsScreen = ({ navigation }) => {
           <Avatar.Image
             size={94}
             source={{ uri: image }}
-            style={{ margin: 10, alignSelf: "center" }}
+            style={{
+              margin: 10,
+              alignSelf: "center",
+              backgroundColor: "#a68d53",
+            }}
           />
           {image && (
             <Avatar.Image
@@ -119,8 +124,9 @@ const SettingsScreen = ({ navigation }) => {
               <Button
                 mode="text"
                 onPress={() => Alert.alert("Saved to firebase")}
+                color={colors.text}
               >
-                Save
+                Update
               </Button>
             </View>
           </View>
@@ -129,20 +135,26 @@ const SettingsScreen = ({ navigation }) => {
         <List.Section title="Athlete Access">
           <List.Item
             title="Scout Pass"
+            titleStyle={{ color: colors.text }}
             style={{ marginLeft: 9 }}
-            left={(props) => <List.Icon {...props} icon="ticket" />}
-            onPress={() => Alert.alert("Scout Pass information")}
+            left={(props) => (
+              <List.Icon {...props} icon="ticket" color={colors.text} />
+            )}
+            onPress={() => navigation.navigate("ScoutPass")}
           />
         </List.Section>
         <List.Section title="Private Information + Data">
           <List.Accordion
-            title="Advanced Settings"
-            left={(props) => <List.Icon {...props} icon="cog" />}
+            title="Legal & Data"
+            left={(props) => (
+              <List.Icon {...props} icon="cog" color={colors.text} />
+            )}
             expanded={expanded}
             onPress={handlePress}
+            titleStyle={{ color: colors.text }}
           >
             <List.Item title="User Data" />
-            <List.Item title="Legal & Policy" />
+            <List.Item title="Legal" />
             <List.Item title="California Privacy Act" />
           </List.Accordion>
         </List.Section>

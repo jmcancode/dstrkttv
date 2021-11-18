@@ -61,7 +61,7 @@ export default function DstrktX({ navigation }) {
                 padding: 10,
               }}
             >
-              DSTRKT X
+              The DSTRKT
             </Text>
             <Text style={styles.paragraph}>
               Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum

@@ -49,29 +49,6 @@ const initialRegion = {
 };
 
 const LearnMore = () => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode("date");
-  };
-
-  const showTimepicker = () => {
-    showMode("time");
-  };
-
   return (
     <View>
       <MapView
@@ -95,37 +72,7 @@ const LearnMore = () => {
           title="The DSTRKT HQ"
           description="19851 Nordhoff PL #104 Chatsworth, California 91311"
         />
-        <MapView.Callout>
-          <View style={styles.container}>
-            <Text style={styles.header}>Schedule a Tour</Text>
-            <View style={styles.innerContainer}>
-              <View>
-                <Button
-                  onPress={showDatepicker}
-                  title="Select a date to visit"
-                  color="#1f1f1f"
-                />
-              </View>
-              <View>
-                <Button
-                  onPress={showTimepicker}
-                  title="Time Slots"
-                  color="#1f1f1f"
-                />
-              </View>
-              {show && (
-                <DateTimePicker
-                  testID="dateTimePicker"
-                  value={date}
-                  mode={mode}
-                  is24Hour={true}
-                  display="default"
-                  onChange={onChange}
-                />
-              )}
-            </View>
-          </View>
-        </MapView.Callout>
+      
       </MapView>
     </View>
   );

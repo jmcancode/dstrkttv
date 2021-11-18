@@ -10,13 +10,16 @@ import {
   Button,
 } from "react-native";
 // expo-av
-import { Video } from "expo-av";
-
+import { Video, AVPlaybackStatus } from "expo-av";
+// expo icons
+import { AntDesign } from '@expo/vector-icons';
 // RN Picker
 import { Picker } from "@react-native-picker/picker";
+import { useTheme } from "@react-navigation/native";
 
 const { width } = Dimensions.get("screen").width;
 const { height } = Dimensions.get("screen").height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,8 +27,8 @@ const styles = StyleSheet.create({
     height: height,
   },
   title: {
-    fontSize: 36,
-    fontWeight: "700",
+
+    
   },
   subtitle: {
     fontSize: 18,
@@ -47,6 +50,9 @@ const styles = StyleSheet.create({
 });
 
 export default function VideoPlayer() {
+  const {colors} = useTheme();
+  const [status, setStatus] = React.useState({});
+  const video = React.useRef(null);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -58,12 +64,15 @@ export default function VideoPlayer() {
           isMuted={false}
           resizeMode="cover"
           shouldPlay
+          ref={video}
           useNativeControls
           isLooping
+          onPlaybackStatusUpdate={status => setStatus(() => status)}
           style={{ flex: 1, width: width, height: 300 }}
         />
         <View style={{ paddingTop: 10, paddingLeft: 10 }}>
-          <Text style={styles.title} adjustsFontSizeToFit numberOfLines={1}>
+          <Text style={{ color: colors.text, fontSize: 36,
+    fontWeight: "700"}} adjustsFontSizeToFit numberOfLines={1}>
             Full Body Workout
           </Text>
           <Text style={styles.subtitle} adjustsFontSizeToFit numberOfLines={1}>
@@ -83,15 +92,28 @@ export default function VideoPlayer() {
           <Button
             title="Workout Details"
             onPress={() => alert("Are you ready to change your diet?")}
-            color="#000"
+            color={colors.text}
             accessibilityLabel="Call to action for those who can not hear."
           />
           <Button
             title="Subscribe"
             onPress={() => alert("Are you ready to access your workout?")}
-            color="#000"
+            color={colors.text}
             accessibilityLabel="Call to action for those who can not hear."
           />
+        </View>
+        <View style={{flexDirection: "row", justifyContent: "center"}}>
+        <Button
+        color={colors.text}
+          title={status.isPlaying ? 'Pause' : 'Play'}
+          onPress={() =>
+            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
+          }
+        />
+        <AntDesign name="caretright" size={24} color={colors.text} style={{marginTop: 9}}
+          onPress={() =>
+            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
+          } />
         </View>
       </View>
     </ScrollView>

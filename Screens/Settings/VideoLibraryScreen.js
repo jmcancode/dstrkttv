@@ -17,7 +17,7 @@ const VideoLibrary = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-      <Text>Video Library</Text>
+      <Text style={{color: colors.text}}>Video Library</Text>
     </View>
   );
 };
